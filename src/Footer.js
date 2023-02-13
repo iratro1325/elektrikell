@@ -1,12 +1,12 @@
 import Container from 'react-bootstrap/Container'
-import DurationComponent from './Durations'
+import DurationsComponent from './Durations'
 
 function FooterComponent () {
     return (
-           <Container className>
+           <Container className="text-center">
                 <div>Tahan tarbida</div>
                 <div>
-                    <DurationComponent />
+                    <DurationsComponent />
                 </div>
                 <div>Buttons</div>
                 <div>Parim aeg</div>

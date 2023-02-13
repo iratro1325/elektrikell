@@ -5,19 +5,18 @@ import PriceHeader from './PriceHeader';
 import FooterComponent from './Footer';
 
 function App() {
-return (
-  <>
-  <div className='container-wrapper pb-2'>
-  <Container>
-     <NavBarComponent />
-     <PriceHeader />
-     <div className='chart'></div>
-  </Container>
-  </div>
-  <FooterComponent />
- </>
-
-);
+   return (
+      <>
+         <div className='container-wrapper pb-2'>
+            <Container>
+               <NavBarComponent />
+               <PriceHeader />
+               <div className='chart'></div>
+            </Container>
+         </div>
+         <FooterComponent />
+      </>
+   );
 }
 
 export default App;
