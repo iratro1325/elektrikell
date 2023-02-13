@@ -1,13 +1,15 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PeakHourToggle from './PeakHourTooggle';
+import SelectPriceType from './SelectPriceType';
 
 
-function PriceHeader() {
+function PriceHeader(props) {
   return (
       <Row className='mb-2'>
         <Col>1 of 3</Col>
-        <Col><PeakHourToggle /></Col>
+        <Col>
+        <SelectPriceType {...props} />
+        </Col>
         <Col>3 of 3</Col>
       </Row>
       );
