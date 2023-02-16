@@ -8,4 +8,4 @@ function FooterHighPrice () {
         )
 }
 
-export default FooterHighPrice
+export default FooterHighPrice;
