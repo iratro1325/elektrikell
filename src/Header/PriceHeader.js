@@ -15,7 +15,8 @@ useEffect(() => {
     if (!success) {
       throw messages[0];
   }
-  setCurrentPrise(data[0].price);
+  const kwPrice = +(data[0].price / 10 * 1.2).toFixed(2);
+  setCurrentPrise(kwPrice);
   })
   .catch((error) => setErrorMessage(error.toString()));
   }, []);
