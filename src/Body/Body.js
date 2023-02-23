@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { 
-    ResponsiveContainer, 
-    LineChart, 
-    CartesianGrid, 
-    XAxis, 
-    Tooltip, 
-    Legend, 
-    Line, 
-    YAxis, 
+import {
+    ResponsiveContainer,
+    LineChart,
+    CartesianGrid,
+    XAxis,
+    Tooltip,
+    Legend,
+    Line,
+    YAxis,
     ReferenceLine,
-    ReferenceArea 
-    } from 'recharts';
+    ReferenceArea
+} from 'recharts';
 import ErrorModal from '../ErrorModal';
 import { getPriceData } from '../services/apiService';
 import moment from 'moment';
@@ -20,43 +20,86 @@ function Body({ hourRange }) {
     const [data, setData] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const [x1, setX1] = useState(0);
-    // console.log('errorMessage', errorMessage);
+
     useEffect(() => {
         getPriceData()
             .then(({ success, data, messages }) => {
                 if (!success) {
                     throw messages[0];
                 }
-                
+
                 const newData = data.ee.map(d => {
 
                     return {
                         ...d,
-                        price: +( d.price /10 * 1.2).toFixed(2),
+                        price: +(d.price / 10 * 1.2).toFixed(2),
                         hour: moment.unix(d.timestamp).hours(),
                         current: moment().isSame(moment.unix(d.timestamp), 'hour'),
                     }
                 });
-                const timestampNow = moment().unix();
-                const futureData = newData.filter((el) => el.timestamp > timestampNow);
-               
-                const rangePrices = [];
-                futureData.forEach((v, i, arr) => {
-                    const range = arr.slice(i, i + hourRange +1);
-                    if(range.length === hourRange + 1) {
-                        let sum = 0;
-                        range.forEach(v => sum += v.price);
-                        rangePrices.push({ sum, i});
-                    }
+                setData(newData);
+            })
+            .catch((error) => setErrorMessage(error.toString()));
+    }, []);
+    useEffect(() => {
+        if (data > 0) {
+            const timestampNow = moment().unix();
+            const futureData = data.filter((el) => el.timestamp > timestampNow);
+
+            const rangePrices = [];
+            futureData.forEach((v, i, arr) => {
+                const range = arr.slice(i, i + hourRange + 1);
+                if (range.length === hourRange + 1) {
+                    let sum = 0;
+                    range.forEach(v => sum += v.price);
+                    rangePrices.push({ sum, i });
+                }
             });
-            
             rangePrices.sort((a, b) => a.sum - b.sum);
             console.log('rangePrices', rangePrices);
             setX1(rangePrices[0].i);
-            setData(newData);
-            })
-            .catch((error) => setErrorMessage(error.toString()));
-    }, [hourRange]);
+        }
+    }, [hourRange, data]);
+
+    // useEffect(() => {
+    //     getPriceData()
+    //         .then(({ success, data, messages }) => {
+    //             if (!success) {
+    //                 throw messages[0];
+    //             }
+
+    //             const newData = data.ee.map(d => {
+
+    //                 return {
+    //                     ...d,
+    //                     price: +( d.price /10 * 1.2).toFixed(2),
+    //                     hour: moment.unix(d.timestamp).hours(),
+    //                     current: moment().isSame(moment.unix(d.timestamp), 'hour'),
+    //                 }
+    //             });
+    //             const timestampNow = moment().unix();
+    //             const futureData = newData.filter((el) => el.timestamp > timestampNow);
+
+    //             const rangePrices = [];
+    //             futureData.forEach((v, i, arr) => {
+    //                 const range = arr.slice(i, i + hourRange +1);
+    //                 if(range.length === hourRange + 1) {
+    //                     let sum = 0;
+    //                     range.forEach(v => sum += v.price);
+    //                     rangePrices.push({ sum, i});
+    //                 }
+    //         });
+
+    //         rangePrices.sort((a, b) => a.sum - b.sum);
+    //         console.log('rangePrices', rangePrices);
+    //         setX1(rangePrices[0].i);
+    //         setData(newData);
+    //         })
+    //         .catch((error) => setErrorMessage(error.toString()));
+    // }, [hourRange]);
+
+
+
 
     return (
         <>
