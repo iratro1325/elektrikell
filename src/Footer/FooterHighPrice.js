@@ -5,7 +5,7 @@ function FooterHighPrice () {
            <Container className="text-center">
                 <div>FooterHighPrice</div>
             </Container>
-        )
+        );
 }
 
 export default FooterHighPrice;
