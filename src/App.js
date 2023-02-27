@@ -29,7 +29,7 @@ function App() {
             <FooterLowPrice 
                hourRange={hourRange} 
                setHourRange={setHourRange} 
-               lowPriceTimeStamp={lowPriceTimestamp}
+               lowPriceTimestamp={lowPriceTimestamp}
          /> 
          : <FooterHighPrice />}
          {lowPriceTimestamp && <Loading />}
