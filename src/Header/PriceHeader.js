@@ -6,7 +6,7 @@ import { getCurrentPrice } from '../services/apiService';
 import ErrorModal from '../ErrorModal';
 
 function PriceHeader(props) {
-const [currentPrice, setCurrentPrise] = useState(1);
+const [currentPrice, setCurrentPrise] = useState(0);
 const [errorMessage, setErrorMessage] = useState(null);
 
 useEffect(() => {
@@ -15,6 +15,7 @@ useEffect(() => {
     if (!success) {
       throw messages[0];
   }
+  
   const kwPrice = +(data[0].price / 10 * 1.2).toFixed(2);
   setCurrentPrise(kwPrice);
   })
