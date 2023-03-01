@@ -34,12 +34,12 @@ function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
       useEffect(() => {
         getPriceData(searchDate)
             .then(({ success, data, messages }) => {
+               
                 if (!success) {
                     throw messages[0];
                 }
 
                 const newData = data.ee.map(d => {
-
                     return {
                         ...d,
                         price: +(d.price / 10 * 1.2).toFixed(2),
@@ -47,6 +47,7 @@ function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
                         current: moment().isSame(moment.unix(d.timestamp), 'hour'),
                     }
                 });
+                
                 setData(newData);
             })
             .catch((error) => setErrorMessage(error.toString()));
@@ -55,6 +56,7 @@ function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
     useEffect(() => {
         if (data.length) {
             const timestampNow = moment().unix();
+            
             const futureData = data.filter((el) => el.timestamp > timestampNow);
 
             const hourRangeLocal = activePrice === 'low' ? hourRange : 1;
@@ -91,10 +93,10 @@ function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
                     }
                 </LineChart>
             </ResponsiveContainer>
-            <Button variant="outline-secondary" onClick={() => setShowForm(true)} size='sm'>
+            <Button variant="outline-secondary" onClick={() => setShowForm(true)} size="sm">
         Määra kuupäevad
       </Button>
-      <DateForm show={showForm} setShow={setShowForm} setSearchDate={setSearchDate}/>
+      <DateForm show={showForm} setShow={setShowForm} setSearchDate={setSearchDate} />
             <ErrorModal errorMessage={errorMessage} handleClose={() => setErrorMessage(null)} />
         </>
     );

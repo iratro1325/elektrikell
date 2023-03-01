@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { ReferenceArea } from "recharts";
 
-function AreaLow({hourRange, setLowPriceTimestamp, rangePrices, searchDate}) {
+function AreaLow({ hourRange, setLowPriceTimestamp, rangePrices, searchDate }) {
     const [x, setX] = useState(0);
 
     useEffect(() => {
-       if(!rangePrices) return;
+       if (!rangePrices) return;
         setX(rangePrices[0].i);
             setLowPriceTimestamp(rangePrices[0].timestamp);
     }, [rangePrices, setLowPriceTimestamp]);

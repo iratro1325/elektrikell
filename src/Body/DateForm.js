@@ -14,10 +14,10 @@ function DateForm({ show, setShow, setSearchDate }) {
         const start = event.target.start.value;
         const end = event.target.end.value;
 
-        setSearchDate ({
+        setSearchDate({
             start: moment(start).format(), 
             end: moment(end).format(),
-            pastHour: moment().diff(moment(start), 'hours'),
+            pastHours: moment().diff(moment(start), 'hours'),
         });
   };
 

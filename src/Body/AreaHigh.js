@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ReferenceArea } from "recharts";
 
-function AreaHigh(rangePrices) {
+function AreaHigh({ rangePrices }) {
 const [xHigh, setXHigh] = useState(null);
 
 useEffect(() => {
