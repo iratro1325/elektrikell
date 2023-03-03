@@ -1,13 +1,13 @@
-import { Routes, Route } from "react-router-dom";
-import About from "./About";
-import ElektriKell from "./ElektriKell";
+import { Routes, Route } from 'react-router-dom';
+import About from './About';
+import ElektriKell from './ElektriKell';
 
 function App() {
     return (
         <Routes>
             <Route path="/" element={<ElektriKell />} />
             <Route path="/:activePrice" element={<ElektriKell />} />
-            <Route path="/" element={<About />} />
+            <Route path="/about" element={<About />} />
         </Routes>
     );
 }

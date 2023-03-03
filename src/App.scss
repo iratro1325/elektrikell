@@ -3,9 +3,11 @@
 body {
   background-color: $blue-100;
 }
+
 .container-wrapper {
   background-color: white;
-  }
+}
+
 .chart {
   width: 100%;
   height: 450px;
@@ -15,4 +17,3 @@ body {
 .navbar-brand {
   color: $primary;
 }
-

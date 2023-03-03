@@ -1,11 +1,11 @@
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
 
-function FooterHighPrice () {
+function FooterHighPrice() {
     return (
-           <Container className="text-center">
-                <div>FooterHighPrice</div>
-            </Container>
-        );
+        <Container className="text-center">
+            <div>FooterHighPrice</div>
+        </Container>
+    );
 }
 
 export default FooterHighPrice;

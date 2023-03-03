@@ -4,13 +4,13 @@ import {
     LineChart,
     CartesianGrid,
     XAxis,
+    YAxis,
     Tooltip,
     Line,
-    YAxis,
-    ReferenceLine
+    ReferenceLine,
 } from 'recharts';
-import ErrorModal from '../ErrorModal';
 import { getPriceData } from '../services/apiService';
+import ErrorModal from '../ErrorModal';
 import moment from 'moment';
 import AreaLow from './AreaLow';
 import AreaHigh from './AreaHigh';
@@ -22,7 +22,6 @@ const start = moment().subtract(pastHours, 'hours').format();
 const end = moment().add(30, 'hours').format();
 
 function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
-
     const [data, setData] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [showForm, setShowForm] = useState(false);
@@ -31,6 +30,7 @@ function Body({ hourRange, activePrice, setLowPriceTimestamp }) {
     });
 
     useEffect(() => {
+        
         getPriceData(searchDate)
             .then(({ success, data, messages }) => {
 

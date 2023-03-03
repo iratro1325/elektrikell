@@ -1,24 +1,23 @@
-import moment from "moment";
+import moment from 'moment';
 
-export const rangePricesGenerator = (data, activePrice, hourRange = 1) => {
-    
-        const timestampNow = moment().unix();
-        
-        const futureData = data.filter((el) => el.timestamp > timestampNow);
+export const rangePricesGenerator = (data, hourRange = 1) => {
+    const timestampNow = moment().unix();
 
-        const hourRangeLocal = hourRange;
+    const futureData = data.filter((el) => el.timestamp > timestampNow);
 
-        const rangePrices = [];
-        futureData.forEach((v, i, arr) => {
-            const range = arr.slice(i, i + hourRangeLocal);
-            if (range.length === hourRangeLocal) {
-                let sum = 0;
-                range.forEach(v => sum += v.price);
-                rangePrices.push({ sum, i, timestamp: v.timestamp });
-            }
-        });
+    const hourRangeLocal = hourRange;
 
-        rangePrices.sort((a, b) => a.sum - b.sum);
+    const rangePrices = [];
+    futureData.forEach((v, i, arr) => {
+        const range = arr.slice(i, i + hourRangeLocal);
+        if (range.length === hourRangeLocal) {
+            let sum = 0;
+            range.forEach(v => sum += v.price);
+            rangePrices.push({ sum, i, timestamp: v.timestamp });
+        }
+    });
 
-        return rangePrices;           
-   };
+    rangePrices.sort((a, b) => a.sum - b.sum);
+
+    return rangePrices;
+};
