@@ -6,7 +6,7 @@ import ErrorModal from '../ErrorModal';
 import moment from 'moment';
 
 function DateForm({ show, setShow, setSearchDate }) {
-    const [errorMessage, setErrormessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const handleClose = () => setShow(false);
 
@@ -19,25 +19,25 @@ function DateForm({ show, setShow, setSearchDate }) {
         const currentDate = moment();
 
         if(!start || !end) {
-            setErrormessage('Alg ja Lopp kuupaevad peavad olema maaratud');
+            setErrorMessage('Alg ja Lopp kuupaevad peavad olema maaratud');
             return;
         }
 
         if(currentDate.isBefore(start)) {
-            setErrormessage('Alg kuupaev peab olema minevikus');
+            setErrorMessage('Alg kuupaev peab olema minevikus');
             return;
         }
 
         if(currentDate.isAfter(end)) {
-            setErrormessage('Lopp kuupaev peab olema tulevikus');
+            setErrorMessage('Lopp kuupaev peab olema tulevikus');
             return;
         }
 
         start = moment(start);
         end = moment(end);
 
-        if(start.diff(end, 'days') < 1) {
-            setErrormessage('Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev');
+        if(end.diff(start, 'days') < 1) {
+            setErrorMessage('Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev');
             return;
         }
 
@@ -71,7 +71,7 @@ function DateForm({ show, setShow, setSearchDate }) {
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
-            <ErrorModal errorMessage={errorMessage} handleClose={() => setErrormessage(null)} />
+            <ErrorModal errorMessage={errorMessage} handleClose={() => setErrorMessage(null)} />
         </>
     );
 }
