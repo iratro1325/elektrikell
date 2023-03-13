@@ -5,14 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setHourRange } from '../services/stateService';
 
 function Durations() {
-
     console.log('Durations');
     const buttons = [1, 2, 3, 4, 6, 8];
 
     const hourRange = useSelector((state) => state.hourRange);
 
     const dispatch = useDispatch();
-
 
     return (
         <ButtonToolbar aria-label="Toolbar with button groups" className="justify-content-center">

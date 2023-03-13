@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ErrorModal from '../ErrorModal';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { setErrorMessage, setShowForm } from '../services/stateService';
 
-function DateForm({ show, setShow, setSearchDate }) {
+function DateForm({ setSearchDate }) {
 console.log('DateForm');
 
-    const [errorMessage, setErrorMessage] = useState(null);
+    const showForm = useSelector((state) => state.showForm);
 
-    const handleClose = () => setShow(false);
+    const dispatch = useDispatch();
+    
+    const handleClose = () => dispatch(setShowForm(false));
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,17 +23,17 @@ console.log('DateForm');
         const currentDate = moment();
 
         if(!start || !end) {
-            setErrorMessage('Alg ja Lopp kuupaevad peavad olema maaratud');
+            dispatch(setErrorMessage('Alg ja Lopp kuupaevad peavad olema maaratud'));
             return;
         }
 
         if(currentDate.isBefore(start)) {
-            setErrorMessage('Alg kuupaev peab olema minevikus');
+            dispatch(setErrorMessage('Alg kuupaev peab olema minevikus'));
             return;
         }
 
         if(currentDate.isAfter(end)) {
-            setErrorMessage('Lopp kuupaev peab olema tulevikus');
+            dispatch(setErrorMessage('Lopp kuupaev peab olema tulevikus'));
             return;
         }
 
@@ -39,7 +41,7 @@ console.log('DateForm');
         end = moment(end);
 
         if(start.diff(end, 'days') >= 1) {
-            setErrorMessage('Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev');
+            dispatch(setErrorMessage('Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev'));
             return;
         }
 
@@ -52,7 +54,7 @@ console.log('DateForm');
 
     return (
         <>
-            <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas show={showForm} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Maara kuupaevad</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -73,8 +75,7 @@ console.log('DateForm');
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
-            <ErrorModal errorMessage={errorMessage} handleClose={() => setErrorMessage(null)} />
-        </>
+            </>
     );
 }
 

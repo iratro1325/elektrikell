@@ -8,28 +8,28 @@ import {
     ReferenceLine,
 } from 'recharts';
 import { getPriceData } from '../services/apiService';
-import ErrorModal from '../ErrorModal';
 import moment from 'moment';
 import AreaLow from './AreaLow';
 import AreaHigh from './AreaHigh';
 import Button from 'react-bootstrap/Button';
 import DateForm from './DateForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { setErrorMessage, setShowForm } from '../services/stateService';
 
 const pastHours = 10;
 const start = moment().subtract(pastHours, 'hours').format();
 const end = moment().add(30, 'hours').format();
 
-function Body({ activePrice }) {
+function Body() {
     console.log('Body');
     
     const [data, setData] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [showForm, setShowForm] = useState(false);
+    const activePrice = useSelector((state) => state.activePrice);
     const [searchDate, setSearchDate] = useState({
         start, end, pastHours
     });
 
-   
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
@@ -51,8 +51,8 @@ function Body({ activePrice }) {
 
                 setData(newData);
             })
-            .catch((error) => setErrorMessage(error.toString()));
-    }, [searchDate]);
+            .catch((error) => dispatch(setErrorMessage(error.toString())));
+            }, [searchDate, dispatch]);
 
     const chartsChildren = (
         <>
@@ -73,16 +73,15 @@ function Body({ activePrice }) {
                     {chartsChildren}
                 </AreaHigh>
                 :
-                <AreaLow{...{ data, searchDate }} >
+                <AreaLow {...{ data, searchDate }} >
                     {chartsChildren}
                 </AreaLow>
             }
-            <Button variant="outline-secondary" onClick={() => setShowForm(true)} size="sm">
+            <Button variant="outline-secondary" onClick={() => dispatch(setShowForm(true))} size="sm">
                 Määra kuupäevad
             </Button>
-            <DateForm show={showForm} setShow={setShowForm} setSearchDate={setSearchDate} />
-            <ErrorModal errorMessage={errorMessage} handleClose={() => setErrorMessage(null)} />
-        </>
+            <DateForm setSearchDate={setSearchDate} />
+            </>
     );
 }
 

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { ReferenceArea, ResponsiveContainer, LineChart } from "recharts";
 import { rangePricesGenerator } from "../helpers/rangePrices";
 import { useSelector, useDispatch } from "react-redux";
-import { setLowPriceTimestamp } from "../services/stateService";
+import { setLowPriceTimestamp } from  "../services/stateService";
 
 function AreaLow({ data, searchDate, children }) {
     console.log('AreaLow');
-
+    
     const [x, setX] = useState(0);
     const hourRange = useSelector((state) => state.hourRange);
 
@@ -31,7 +31,7 @@ function AreaLow({ data, searchDate, children }) {
                     fill="green"
                     strokeOpacity={0.3}
                     fillOpacity={0.3}
-                    />
+                />
             </LineChart>
         </ResponsiveContainer>
     );
