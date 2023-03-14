@@ -13,18 +13,17 @@ import AreaLow from './AreaLow';
 import AreaHigh from './AreaHigh';
 import Button from 'react-bootstrap/Button';
 import DateForm from './DateForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { setErrorMessage, setShowForm } from '../services/stateService';
+import { setErrorMessage } from '../services/stateService';
+import { useDispatch } from 'react-redux';
 
 const pastHours = 10;
 const start = moment().subtract(pastHours, 'hours').format();
 const end = moment().add(30, 'hours').format();
 
-function Body() {
+function Body({ activePrice }) {
     console.log('Body');
-    
     const [data, setData] = useState(null);
-    const activePrice = useSelector((state) => state.activePrice);
+    const [showForm, setShowForm] = useState(false);
     const [searchDate, setSearchDate] = useState({
         start, end, pastHours
     });
@@ -35,7 +34,7 @@ function Body() {
 
         getPriceData(searchDate)
             .then(({ success, data, messages }) => {
-
+                console.log('success', success);
                 if (!success) {
                     throw messages[0];
                 }
@@ -50,9 +49,10 @@ function Body() {
                 });
 
                 setData(newData);
+                console.log('getPriceData');
             })
             .catch((error) => dispatch(setErrorMessage(error.toString())));
-            }, [searchDate, dispatch]);
+    }, [searchDate, dispatch]);
 
     const chartsChildren = (
         <>
@@ -67,7 +67,6 @@ function Body() {
 
     return (
         <>
-
             {activePrice === 'high' ?
                 <AreaHigh data={data}>
                     {chartsChildren}
@@ -77,11 +76,11 @@ function Body() {
                     {chartsChildren}
                 </AreaLow>
             }
-            <Button variant="outline-secondary" onClick={() => dispatch(setShowForm(true))} size="sm">
+            <Button variant="outline-secondary" onClick={() => setShowForm(true)} size="sm">
                 Määra kuupäevad
             </Button>
-            <DateForm setSearchDate={setSearchDate} />
-            </>
+            <DateForm show={showForm} setShow={setShowForm} setSearchDate={setSearchDate} />
+        </>
     );
 }
 

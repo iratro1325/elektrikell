@@ -1,18 +1,17 @@
+import React from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { setErrorMessage, setShowForm } from '../services/stateService';
+import { setErrorMessage } from '../services/stateService';
+import { useDispatch } from 'react-redux';
 
-function DateForm({ setSearchDate }) {
-console.log('DateForm');
-
-    const showForm = useSelector((state) => state.showForm);
+function DateForm({ show, setShow, setSearchDate }) {
+    console.log('DateForm');
 
     const dispatch = useDispatch();
-    
-    const handleClose = () => dispatch(setShowForm(false));
+
+    const handleClose = () => setShow(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -54,7 +53,7 @@ console.log('DateForm');
 
     return (
         <>
-            <Offcanvas show={showForm} onHide={handleClose}>
+            <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Maara kuupaevad</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -75,7 +74,7 @@ console.log('DateForm');
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
-            </>
+        </>
     );
 }
 

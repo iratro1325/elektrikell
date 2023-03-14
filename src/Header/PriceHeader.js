@@ -1,18 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SelectPriceType from './SelectPriceType';
-import ErrorModal from '../ErrorModal';
 import { getCurrentPrice } from '../services/apiService';
-import { useDispatch, useSelector } from 'react-redux';
-import { setErrorMessage, setCurrentPrice } from '../services/stateService';
+import { setErrorMessage } from '../services/stateService';
+import { useDispatch } from 'react-redux';
 
 function PriceHeader(props) {
-console.log('PriceHeader');
+    console.log('PriceHeader');
+    const [currentPrice, setCurrentPrice] = useState(0);
 
-    //const [currentPrice, setCurrentPrice] = useState(0);
-    //const errorMessage = useSelector((state) => state.errorMessage);
-    const currentPrice = useSelector((state) => state.currentPrice);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,21 +20,20 @@ console.log('PriceHeader');
                 }
 
                 const kwPrice = +(data[0].price / 10 * 1.2).toFixed(2);
-                dispatch(setCurrentPrice(kwPrice));
+                setCurrentPrice(kwPrice);
             })
             .catch((error) => dispatch(setErrorMessage(error.toString())));
-    }, [ dispatch ]);
+    }, [dispatch]);
 
     return (
         <>
             <Row className="mb-2">
                 <Col>1 of 3</Col>
                 <Col>
-                    <SelectPriceType />
+                    <SelectPriceType {...props} />
                 </Col>
                 <Col>{currentPrice}</Col>
             </Row>
-            <ErrorModal />
         </>
     );
 }

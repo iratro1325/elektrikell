@@ -8,6 +8,7 @@ function App() {
         <Routes>
             <Route path="/" element={<ElektriKell />} />
             <Route path="/:activePrice" element={<ElektriKell />} />
+            <Route path="/low/:durationParam" element={<ElektriKell />} />
             <Route path="/about" element={<About />} />
         </Routes>
     );

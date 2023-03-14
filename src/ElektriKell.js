@@ -1,28 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import Container from 'react-bootstrap/Container';
 import NavBar from './Header/NavBar';
 import PriceHeader from './Header/PriceHeader';
 import FooterHighPrice from './Footer/FooterHighPrice';
 import Body from './Body/Body';
+import ErrorModal from './ErrorModal';
 
 // import ErrorModal from './ErrorModal';
 import Loading from './Loading';
 import { useParams } from 'react-router-dom';
 import FooterLowPrice from './Footer/FooterLowPrice ';
-import { useDispatch, useSelector } from 'react-redux';
-import { setActivePrice } from './services/stateService';
 
 function ElektriKell() {
   console.log('ElektriKell');
 
   const params = useParams();
-  const activePrice = useSelector((state) => state.activePrice);
-  const dispatch = useDispatch();
-
+  const [activePrice, setActivePrice] = useState('low');
+  
    useEffect(() => {
-    params.activePrice && dispatch(setActivePrice(params.activePrice));
-  }, [params, dispatch]);
+    params.activePrice && setActivePrice(params.activePrice);
+  }, [params]);
 
   return (
     <>
@@ -37,6 +35,7 @@ function ElektriKell() {
         <FooterLowPrice />
         : <FooterHighPrice />}
       <Loading />
+      <ErrorModal />
     </>
   );
 }
