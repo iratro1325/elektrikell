@@ -3,7 +3,6 @@ import About from './About';
 import ElektriKell from './ElektriKell';
 
 function App() {
-    console.log('App');
     return (
         <Routes>
             <Route path="/" element={<ElektriKell />} />

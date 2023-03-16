@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
 function About() {
-    return (
+  return (
     <Card className="text-center">
       <Card.Header>Skrypka Iryna</Card.Header>
       <Card.Body>
@@ -12,7 +12,7 @@ function About() {
           Märts, 2023
         </Card.Text>
         <Button variant="primary">
-            <Link to="/" className="nav-link">ElektriKell</Link>
+          <Link to="/" className="nav-link">ElektriKell</Link>
         </Button>
       </Card.Body>
       <Card.Footer className="text-muted">Eesti</Card.Footer>

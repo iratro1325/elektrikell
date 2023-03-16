@@ -7,11 +7,9 @@ import { setErrorMessage } from '../services/stateService';
 import { useDispatch } from 'react-redux';
 
 function DateForm({ show, setShow, setSearchDate }) {
-    console.log('DateForm');
+    const handleClose = () => setShow(false);
 
     const dispatch = useDispatch();
-
-    const handleClose = () => setShow(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,33 +19,33 @@ function DateForm({ show, setShow, setSearchDate }) {
 
         const currentDate = moment();
 
-        if(!start || !end) {
-            dispatch(setErrorMessage('Alg ja Lopp kuupaevad peavad olema maaratud'));
+        if (!start || !end) {
+            dispatch(setErrorMessage("Alg ja Lopp kuupaevad peavad olema maaratud"));
             return;
         }
 
-        if(currentDate.isBefore(start)) {
-            dispatch(setErrorMessage('Alg kuupaev peab olema minevikus'));
+        if (currentDate.isBefore(start)) {
+            dispatch(setErrorMessage("Alg kuupaev peab olema minevikus"));
             return;
         }
 
-        if(currentDate.isAfter(end)) {
-            dispatch(setErrorMessage('Lopp kuupaev peab olema tulevikus'));
+        if (currentDate.isAfter(end)) {
+            dispatch(setErrorMessage("Lopp kuupaev peab olema tulevikus"));
             return;
         }
 
         start = moment(start);
         end = moment(end);
 
-        if(start.diff(end, 'days') >= 1) {
-            dispatch(setErrorMessage('Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev'));
+        if (start.diff(end, "days") >= 1) {
+            dispatch(setErrorMessage("Alg ja Lopp kuupaeva vahe peab olema rohkem kui 1 paev"));
             return;
         }
 
         setSearchDate({
             start: start.format(),
             end: end.format(),
-            pastHours: currentDate.diff(start, 'hours'),
+            pastHours: currentDate.diff(start, "hours"),
         });
     };
 

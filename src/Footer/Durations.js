@@ -2,40 +2,40 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { setHourRange } from '../services/stateService';
 import { useParams, useNavigate } from 'react-router-dom';
+import { setDurationRange } from '../services/stateService';
 
 function Durations() {
     const { durationParam } = useParams();
     const navigate = useNavigate();
 
-    const hourRange = useSelector((state) => state.hourRange);
+    const durationRange = useSelector((state) => state.durationRange);
     const dispatch = useDispatch();
 
     const durations = [1, 2, 3, 4, 6, 8];
- 
+
     const handleClick = (duration) => {
-        if(durationParam) {
-           // navigate(`/low/${time}`);
+        if (durationParam) {
             navigate(`/`);
+            // navigate(`/low/${time}`);
         }
-        dispatch(setHourRange(duration));
-    }
+        dispatch(setDurationRange(duration));
+    };
 
     return (
         <ButtonToolbar aria-label="Toolbar with button groups" className="justify-content-center">
             <ButtonGroup aria-label="First group">
                 {durations.map(duration => {
-                    const selectedDuration = durationParam ? +durationParam : hourRange;
+                    const selectedDuration = durationParam ? +durationParam : durationRange;
                     return (
-                    <Button
-                        key={duration}
-                        active={duration === selectedDuration}
-                        onClick={() => handleClick(duration)}>
-                        {duration}h
-                    </Button>
-                )
-            }
+                        <Button
+                            key={duration}
+                            active={duration === selectedDuration}
+                            onClick={() => handleClick(duration)}>
+                            {duration}h
+                        </Button>
+                    )
+                }
                 )}
             </ButtonGroup>
         </ButtonToolbar>

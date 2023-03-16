@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useDispatch } from 'react-redux';
 import SelectPriceType from './SelectPriceType';
 import { getCurrentPrice } from '../services/apiService';
 import { setErrorMessage } from '../services/stateService';
-import { useDispatch } from 'react-redux';
 
-function PriceHeader(props) {
-    console.log('PriceHeader');
+function PricesHeader(props) {
     const [currentPrice, setCurrentPrice] = useState(0);
 
     const dispatch = useDispatch();
@@ -38,4 +37,4 @@ function PriceHeader(props) {
     );
 }
 
-export default PriceHeader;
+export default PricesHeader;

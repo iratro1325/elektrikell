@@ -7,21 +7,20 @@ import {
     Line,
     ReferenceLine,
 } from 'recharts';
-import { getPriceData } from '../services/apiService';
 import moment from 'moment';
+import Button from 'react-bootstrap/Button';
+import { useDispatch } from 'react-redux';
 import AreaLow from './AreaLow';
 import AreaHigh from './AreaHigh';
-import Button from 'react-bootstrap/Button';
 import DateForm from './DateForm';
+import { getPriceData } from '../services/apiService';
 import { setErrorMessage } from '../services/stateService';
-import { useDispatch } from 'react-redux';
 
 const pastHours = 10;
-const start = moment().subtract(pastHours, 'hours').format();
-const end = moment().add(30, 'hours').format();
+const start = moment().subtract(pastHours, "hours").format();
+const end = moment().add(30, "hours").format();
 
 function Body({ activePrice }) {
-    console.log('Body');
     const [data, setData] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [searchDate, setSearchDate] = useState({
@@ -29,30 +28,6 @@ function Body({ activePrice }) {
     });
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-
-        getPriceData(searchDate)
-            .then(({ success, data, messages }) => {
-                console.log('success', success);
-                if (!success) {
-                    throw messages[0];
-                }
-
-                const newData = data.ee.map(d => {
-                    return {
-                        ...d,
-                        price: +(d.price / 10 * 1.2).toFixed(2),
-                        hour: moment.unix(d.timestamp).hours(),
-                        current: moment().isSame(moment.unix(d.timestamp), 'hour'),
-                    }
-                });
-
-                setData(newData);
-                console.log('getPriceData');
-            })
-            .catch((error) => dispatch(setErrorMessage(error.toString())));
-    }, [searchDate, dispatch]);
 
     const chartsChildren = (
         <>
@@ -65,9 +40,30 @@ function Body({ activePrice }) {
         </>
     );
 
+    useEffect(() => {
+        getPriceData(searchDate)
+            .then(({ success, data, messages }) => {
+                if (!success) {
+                    throw messages[0];
+                }
+
+                const newData = data.ee.map(d => {
+                    return {
+                        ...d,
+                        price: +(d.price / 10 * 1.2).toFixed(2),
+                        hour: moment.unix(d.timestamp).hours(),
+                        current: moment().isSame(moment.unix(d.timestamp), "hour"),
+                    }
+                });
+
+                setData(newData);
+            })
+            .catch((error) => dispatch(setErrorMessage(error.toString())));
+    }, [searchDate, dispatch]);
+
     return (
         <>
-            {activePrice === 'high' ?
+            {activePrice === "high" ?
                 <AreaHigh data={data}>
                     {chartsChildren}
                 </AreaHigh>

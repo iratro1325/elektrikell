@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
-import { ReferenceArea, ResponsiveContainer, LineChart } from "recharts";
-import { rangePricesGenerator } from "../helpers/rangePrices";
+import { useState, useEffect } from 'react';
+import { ReferenceArea, ResponsiveContainer, LineChart } from 'recharts';
+import { rangePricesGenerator } from '../helpers/rangePrices';
 
 function AreaHigh({ data, children }) {
-    console.log('AreaHigh');
     const [xHigh, setXHigh] = useState(null);
+
+    const currentindex = data?.findIndex((el) => el.current);
 
     useEffect(() => {
         if (data) {
@@ -21,8 +22,6 @@ function AreaHigh({ data, children }) {
             setXHigh(half.filter(v => v.sum >= average));
         }
     }, [data]);
-
-    const currentindex = data?.findIndex((el) => el.current);
 
     return (
         <ResponsiveContainer width="100%" height={400} >
