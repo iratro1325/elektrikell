@@ -9,14 +9,15 @@ function Durations() {
     const { durationParam } = useParams();
     const navigate = useNavigate();
 
-    // useSelector - hook, kot sluwaet redux-oblako i esli izmenitsya sostoyanie, to useSelector inicializiruetsya otrisovku componenta
-    // i nazna4aet novye dannye v peremennuyu.
+    // useSelector - hook, kot sluwaet redux-oblako i esli izmenitsya sostoyanie,
+    // to useSelector inicializiruetsya otrisovku componenta
+    // i nazna4aet vse novye dannye v peremennuyu.
     // useSelector ptinimaet funkziju kak argument i eta funkzija opredelyaet, kakoe sostoyanie sluwat.
 
     const durationRange = useSelector((state) => state.durationRange);
     
     // Dlja inicializirovanija izmenenija sostoyanija ispolzuetsja dispatch.
-    // Dispatch - tot, kto otpravit Action v oblako store / redux sostojanie.
+    // Dispatch - tot, kto otpravit Action v oblako store/redux sostojanie.
     // Dispatch peredast naw action v redux-reducer, tot zapustit funkziju, kot izmenit sostoyanie, 4to potom podhvatit useSelector.
     const dispatch = useDispatch();
 
@@ -35,9 +36,9 @@ function Durations() {
     // 'Events'
     // Sobytija - eto 4to-to, 4to proizowlo v brauzere.
     // Naprimer, polzovatel nagal 4to-to u nas na proecte, to brauzer shvatil eto sobytie i peredal nawemu proektu.
-    // Esli u nas stoit v etom meste triger sobytija, to etot triger zapuskaet obrabot4ik sobytija.
-    // Trigery nazyvautsya s klu4evogo slova 'Un'.
-    // Obrabot4iki nazyvautsya s klu4evogo slova 'Handle'.
+    // Esli u nas stoit v etom meste trigger sobytija, to etot trigger zapuskaet obrabot4ik sobytija.
+    // Triggery nazyvautsya s klu4evogo slova 'on'.
+    // Obrabot4iki nazyvautsya s klu4evogo slova 'handle'.
     // Brauzer peredaet v obrabot4ik object 'event', v kot soderjitsya vsya informazija ob etom sobytii.
 
     return (

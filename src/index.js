@@ -12,8 +12,8 @@ import { store } from './services/stateService';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // Dlya togo, 4toby ispolzovat redux sostoyanie v reacte, my ispolzuem dopolnitelnuju biblioteku 'react-redux'.
-// S react-redux berem component provaider i peredaem emu ves redux.
-// On dolgen obernut ves proect i byt zaglavnym componentom.
+// S react-redux berem component Provider i peredaem emu ves redux.
+// Provider dolgen obernut ves proect i byt zaglavnym componentom.
 
 // Dlya imitirovanija multipage application v react ispolzuetsya react-router-dom.
 // Poskolku react - eto single page application, 4tob rabotali ssylki, 

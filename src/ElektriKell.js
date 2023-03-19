@@ -13,9 +13,9 @@ import './App.scss';
 function ElektriKell() {
   
   // useParams - hook ot react-router-dom, kot sluwaet peredannye emu parametry iz ssylki i nazna4aet ih vseh v odin object.
-  // Pri polu4enii novyh parametrov inicializiruetsya otrisovka novyh componentov.
+  // Pri polu4enii novyh parametrov inicializiruetsya render componenta.
 
-  // kajdyj hook vliyaet na otrisovku komponenta.
+  // Kajdyj hook vliyaet na otrisovku komponenta.
   const params = useParams();
 
   const [activePrice, setActivePrice] = useState("low");

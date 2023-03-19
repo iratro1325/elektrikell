@@ -6,8 +6,8 @@ import SelectPriceType from './SelectPriceType';
 import { getCurrentPrice } from '../services/apiService';
 import { setErrorMessage } from '../services/stateService';
 
-//Komponenty mogut prinimat property
-// Priperty peredaetsya komponentu kak svoystvo html elementu
+// Komponenty mogut prinimat properties/property
+// Property peredaetsya komponentu kak i svoystva html elementu
 // properies mogut byt lubym tipom dannyh
 // kagdoe property, peredannoe componentu, sobiraetsya v odin object
 // component prinimaet tolko odin argument i kak pravilo ego nazyvaut 'props'
@@ -21,13 +21,13 @@ function PricesHeader(props) {
 // 1 - funczija, kot zapustitsya, kogda component zakon4it svoyu otrisovku,
 // 2 - spisok zavisimostej, massiv.
 // Spisok zavisimostej kontroliruet zapusk funczii pervogo argumenta.
-// esli v zavisimosi izmenilis dannye, to useEffect zanovo zapuskaetsya.
-// component moget zanovo otrisovatsya, no useEffect ne zapustitsya, esli eto izmenenie ego ne kasaetsya.
-// esli peredat pustoj massiv v zavisimosti, to useEffect inizializiruetsya tolko 1 raz posle pervoj otrisovki componenta.
+// Esli v zavisimosi izmenilis dannye, to useEffect zanovo zapuskaetsya.
+// Component moget zanovo otrisovatsya, no useEffect ne zapustitsya, esli eto izmenenie ego ne kasaetsya.
+// Esli peredat pustoj massiv v zavisimosti, to useEffect inicializiruetsya tolko 1 raz posle pervoj otrisovki componenta.
 // useEffect takge garantiruet, 4to esli v nem my budem menyat sostoyanie componenta, to proizoidet tolko odna otrisovka componenta.
 // Pocle etoj otrisovki useEffect bolwe ne zapustitsya.
-// v useEffecte mojno postavit return i vernut functziju, kot zapustitsya, pri vyhode iz componenta.
-// pervaja otrisovka componenta - mount (est unmount), potom render.
+// V useEffecte mojno postavit return i vernut functziju, kot zapustitsya, pri vyhode iz componenta. (redko)
+// Pervaja otrisovka componenta - mount (est 'unmount', kogda uhodim ot componenta), potom render.
 
     useEffect(() => {
         getCurrentPrice()
