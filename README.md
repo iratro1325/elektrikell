@@ -1,9 +1,79 @@
-# Getting Started with Create React App
+# Elektrikell app.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## What is this app about?
 
+The App was created as a project of Frontend courses. It shows the price of electricity in Estonia. It allows to see the range of the lowest and highest prices in a certain time interval.
+
+## How this app works?
+
+The project works with the API to display up-to-date information about electricity prices and times. This information is taken from elering.ee, by using request to: https://dashboard.elering.ee/api.
+
+## Available Scripts
+In this projact are used:\
+    "@reduxjs/toolkit": "^1.9.3",\
+    "@testing-library/jest-dom": "^5.16.5",\
+    "@testing-library/react": "^13.4.0",\
+    "@testing-library/user-event": "^13.5.0",\
+    "bootstrap": "^5.2.3",\
+    "moment": "^2.29.4",\
+    "react": "^18.2.0",\
+    "react-bootstrap": "^2.7.0",\
+    "react-countdown": "^2.3.5",\
+    "react-dom": "^18.2.0",\
+    "react-redux": "^8.0.5",\
+    "react-router-dom": "^6.8.2",\
+    "react-scripts": "5.0.1",\
+    "recharts": "^2.4.1",\
+    "sass": "^1.58.0",\
+    "web-vitals": "^2.1.4"
+### "moment".
+
+Moment is used to work with time. It allows to parse, validate, manipulate, and display dates in javascript. 
+
+### "react-bootstrap".
+React-bootstrap components that are used into the App: Offcanvas, Form, Button, ButtonGroup, ButtonToolbar, Container, Nav, Navbar, Row, Col, Card, Modal, Spinner.
+
+### "react-countdown".
+React-countdown is used to know the duration to tne best price.
+
+### "react-dom".
+React-dom takes care of updating the DOM to match the React elements.
+
+### "react-redux".
+React-redux allows to manage app's state in a single place and keep changes in the app more predictable and traceable. It makes it easier to reason about changes occurring in the app.
+
+### "react-router-dom".
+React-router-dom is used to create Single Page Web Apps. In the App it is utilized to define various routes:
+```JSX
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<ElektriKell />} />
+            <Route path="/:activePrice" element={<ElektriKell />} />
+            <Route path="/low/:durationParam" element={<ElektriKell />} />
+            <Route path="/about" element={<About />} />
+        </Routes>
+    );
+}
+
+export default App;
+```
+
+### "react-scripts".
+React-scripts helps to kick off projects without configuring.
+
+### "recharts".
+Recharts is used to display the received data in charts. It's a quick and convinient way to see all actul information about the prices.
+
+### "sass".
+SaaS allows users to connect to and use cloud-based apps over the Internet. 
+
+### "web-vitals".
+Web-vitals is three metrics that score a user's experience loading a webpage: how quickly page content loads, how quickly a browser loading a webpage can respond to a user's input, and how unstable the content is as it loads in the browser.
+
+## How to run the App?
 In the project directory, you can run:
 
 ### `npm start`
