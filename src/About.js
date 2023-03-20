@@ -12,7 +12,7 @@ function About() {
           Märts, 2023
         </Card.Text>
         <Button variant="primary">
-          <Link to="/" className="nav-link">ElektriKell</Link>
+          <Link to="/elektrikell" className="nav-link">ElektriKell</Link>
         </Button>
       </Card.Body>
       <Card.Footer className="text-muted">Eesti</Card.Footer>

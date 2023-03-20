@@ -10,7 +10,7 @@ The App was created as a project of Frontend courses. It shows the price of elec
 
 The project works with the API to display up-to-date information about electricity prices and times. This information is taken from elering.ee, by using request to: https://dashboard.elering.ee/api.
 
-## Available Scripts
+## Pa
 In this projact are used:\
     "@reduxjs/toolkit": "^1.9.3",\
     "@testing-library/jest-dom": "^5.16.5",\
@@ -45,7 +45,7 @@ React-dom takes care of updating the DOM to match the React elements.
 React-redux allows to manage app's state in a single place and keep changes in the app more predictable and traceable. It makes it easier to reason about changes occurring in the app.
 
 ### "react-router-dom".
-React-router-dom is used to create Single Page Web Apps. In the App it is utilized to define various routes:
+React-router-dom is used to create mul Single Page Web Apps. In the App it is utilized to define various routes:
 ```JSX
 function App() {
     return (
