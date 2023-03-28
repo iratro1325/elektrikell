@@ -1,10 +1,10 @@
 import React from 'react';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import moment from 'moment';
 import { setErrorMessage } from '../services/stateService';
-import { useDispatch } from 'react-redux';
 
 function DateForm({ show, setShow, setSearchDate }) {
     const handleClose = () => setShow(false);
@@ -50,29 +50,27 @@ function DateForm({ show, setShow, setSearchDate }) {
     };
 
     return (
-        <>
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Maara kuupaevad</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Alg. kuupaev</Form.Label>
-                            <Form.Control name="start" type="datetime-local" placeholder="start date" />
-                        </Form.Group>
+        <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Maara kuupaevad</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Alg. kuupaev</Form.Label>
+                        <Form.Control name="start" type="datetime-local" placeholder="start date" />
+                    </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Label>Lopp kuupaev</Form.Label>
-                            <Form.Control name="end" type="datetime-local" placeholder="end date" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit" className="w-100">
-                            Otsi
-                        </Button>
-                    </Form>
-                </Offcanvas.Body>
-            </Offcanvas>
-        </>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Lopp kuupaev</Form.Label>
+                        <Form.Control name="end" type="datetime-local" placeholder="end date" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className="w-100">
+                        Otsi
+                    </Button>
+                </Form>
+            </Offcanvas.Body>
+        </Offcanvas>
     );
 }
 

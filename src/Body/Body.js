@@ -8,8 +8,8 @@ import {
     ReferenceLine,
 } from 'recharts';
 import moment from 'moment';
-import Button from 'react-bootstrap/Button';
 import { useDispatch } from 'react-redux';
+import Button from 'react-bootstrap/Button';
 import AreaLow from './AreaLow';
 import AreaHigh from './AreaHigh';
 import DateForm from './DateForm';
@@ -28,17 +28,6 @@ function Body({ activePrice }) {
     });
 
     const dispatch = useDispatch();
-
-    const chartsChildren = (
-        <>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="hour" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="price" stroke="#8884d8" />
-            <ReferenceLine x={data?.findIndex((el) => el.current)} stroke="red" />
-        </>
-    );
 
     useEffect(() => {
         getPriceData(searchDate)
@@ -60,6 +49,17 @@ function Body({ activePrice }) {
             })
             .catch((error) => dispatch(setErrorMessage(error.toString())));
     }, [searchDate, dispatch]);
+
+    const chartsChildren = (
+        <>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="hour" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="price" stroke="#8884d8" />
+            <ReferenceLine x={data?.findIndex((el) => el.current)} stroke="red" />
+        </>
+    );
 
     return (
         <>

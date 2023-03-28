@@ -16,7 +16,6 @@ function FooterLowPrice() {
             <div>
                 {lowPriceTimestamp && <Countdown date={lowPriceTimestamp * 1000} />}
             </div>
-            <div>Siin on</div>
         </Container>
     );
 }

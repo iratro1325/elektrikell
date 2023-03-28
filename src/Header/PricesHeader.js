@@ -26,12 +26,19 @@ function PricesHeader(props) {
 
     return (
         <>
-            <Row className="mb-2">
-                <Col>1 of 3</Col>
-                <Col>
+            <Row className='mb-5'>
+                <Col className='text-start'>
+                    <span className='fs-5 ms-2'>Elektri hind hetkel on</span> <br />
+                    <span className='fs-5 ms-2 p-1 rounded-2 span_grey'>madal</span>
+                </Col>
+                <Col className='text-center'>
+                    <br />
                     <SelectPriceType {...props} />
                 </Col>
-                <Col>{currentPrice}</Col>
+                <Col className='text-end'>
+                    <h3 className='fs-1'>{currentPrice}</h3>
+                    <p>senti / kilovatt-tund</p>
+                </Col>
             </Row>
         </>
     );
