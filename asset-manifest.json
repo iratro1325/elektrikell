@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/elektrikell/static/css/main.80e426b9.css",
-    "main.js": "/elektrikell/static/js/main.b3e0e507.js",
+    "main.css": "/elektrikell/static/css/main.91777729.css",
+    "main.js": "/elektrikell/static/js/main.1beb88ee.js",
     "index.html": "/elektrikell/index.html",
-    "main.80e426b9.css.map": "/elektrikell/static/css/main.80e426b9.css.map",
-    "main.b3e0e507.js.map": "/elektrikell/static/js/main.b3e0e507.js.map"
+    "main.91777729.css.map": "/elektrikell/static/css/main.91777729.css.map",
+    "main.1beb88ee.js.map": "/elektrikell/static/js/main.1beb88ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.80e426b9.css",
-    "static/js/main.b3e0e507.js"
+    "static/css/main.91777729.css",
+    "static/js/main.1beb88ee.js"
   ]
 }
